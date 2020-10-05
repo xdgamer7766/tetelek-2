@@ -3,7 +3,6 @@ package com.company;
         import java.io.File;
         import java.io.FileNotFoundException;
         import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -130,6 +129,20 @@ public class Main {
     }
 
     
+    public static ArrayList<String> intersection = new ArrayList<String>();
+    public static void metszet(){
+        int j;
+        for (int i = 0; i < szavak.size(); i++) {
+            j = 0;
+            while(j < magyar_szavak.size() && szavak.get(i) != magyar_szavak.get(j)){
+                j++; 
+            }
+            if (j < magyar_szavak.size()){
+                intersection.add(szavak.get(i));
+            }
+        }
+        System.out.println(intersection);
+    }
     public static void main (String[]args) throws FileNotFoundException {
 
         beolvasas();
@@ -145,6 +158,7 @@ public class Main {
         szetvalogatas();
         beolvasas2();
         unio();
+        metszet();
 
 
     }
