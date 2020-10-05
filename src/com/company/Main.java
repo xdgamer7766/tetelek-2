@@ -3,7 +3,9 @@ package com.company;
         import java.io.File;
         import java.io.FileNotFoundException;
         import java.util.ArrayList;
-        import java.util.Scanner;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Scanner;
 
 public class Main {
 
@@ -14,7 +16,7 @@ public class Main {
         while (olvas.hasNext()) {
             szavak.add(olvas.nextLine());
         }
-        System.out.println(szavak);
+        olvas.close();
     }
 
 
@@ -105,6 +107,28 @@ public class Main {
         }
     }
 
+
+    public static ArrayList<String> magyar_szavak = new ArrayList<String>();
+    public static void beolvasas2() throws FileNotFoundException{
+        
+            File f = new File("magyar_szavak.txt");
+            Scanner scr = new Scanner(f);
+            while (scr.hasNext()) {
+                magyar_szavak.add(scr.nextLine().toLowerCase());
+            }
+            scr.close();
+        
+    }
+
+
+    public static ArrayList<String> both = new ArrayList<String>();
+    public static void unio(){
+        both.addAll(szavak);
+        both.removeAll(magyar_szavak);
+        both.addAll(magyar_szavak);
+        Collections.sort(both);
+    }
+
     
     public static void main (String[]args) throws FileNotFoundException {
 
@@ -119,6 +143,8 @@ public class Main {
         masolas();
         kivalogatas();
         szetvalogatas();
+        beolvasas2();
+        unio();
 
 
     }
